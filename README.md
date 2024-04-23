@@ -10,7 +10,7 @@ Neovim intro screen can be extremely buggy and forced to close automatically by 
 If you just want a simple and lightweight startup intro that works, this plugin is for you.
 
 ## Screenshot
-![logo-screenshot](screenshots/screenshot.png)
+![logo-screenshot](screenshots/screenshot.jpeg)
 
 ## Installation
 ```lua
