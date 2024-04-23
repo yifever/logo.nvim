@@ -28,8 +28,8 @@ If you just want a simple and lightweight startup intro that works, this plugin 
 ```lua
 -- Packer
 use {
-    "eoh-bse/minintro.nvim",
-    config = function() require("logo").setup() end
+  "yifever/logo.nvim",
+   config = function() require("logo").setup() end
 }
 ```
 
@@ -39,8 +39,6 @@ Please see [image.nvim](https://github.com/3rd/image.nvim/tree/master) to see ho
 
 ## Configuration
 There are no configuration available.
-
-```
 
 ## Things to be aware of
 If you have some sort of `tabline` plugin such as [bufferline](https://github.com/akinsho/bufferline.nvim),
@@ -57,5 +55,5 @@ The above configuration will effectively set `vim.opt.showtabline` to 2, meaning
 display when there is more than one buffer open
 
 ## Reference Configuration
-If you want to see a reference neovim configuration, please refer to [this
-nvim-setup](https://github.com/eoh-bse/nvim-setup)
+If you want to see a reference neovim configuration, please refer to [my
+nvim-setup](https://github.com/yifever/configs)
