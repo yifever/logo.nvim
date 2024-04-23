@@ -4,7 +4,7 @@ local autocmd_group = vim.api.nvim_create_augroup(PLUGIN_NAME, {})
 local highlight_ns_id = vim.api.nvim_create_namespace(PLUGIN_NAME)
 local logo_buff = -1
 local cache_dir = vim.fn.stdpath("cache")
-local img_api = require("image")
+local img_api = require("3rd/image.nvim")
 
 -- local vimimage = require("image").from_file( "")
 
@@ -27,7 +27,7 @@ end
 
 
 local function draw_logo(buf, image)
-	local window = vim.fn.bufwinid(buf)
+	-- local window = vim.fn.bufwinid(buf)
 	local geometry = get_geometry(image)
 	local options = {
 		x = geometry.x,
@@ -83,7 +83,6 @@ local function setup(options)
 
 	vim.api.nvim_create_autocmd("VimEnter", {
 		group = autocmd_group,
-		require("notify")(vim.fn.stdpath("cache")),
 		callback = function()
 			-- Execute a command if there are no open files
 			if vim.api.nvim_buf_get_name(0) == "" then

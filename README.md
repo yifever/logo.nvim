@@ -16,9 +16,12 @@ If you just want a simple and lightweight startup intro that works, this plugin 
 ```lua
 -- Lazy
 {
-    "yifever/logo.nvim",
-    config = true,
-    lazy = false
+  "yifever/logo.nvim",
+  config = true,
+  lazy = false,
+  dependencies = {
+    "3rd/image.nvim",
+  }
 }
 ```
 
@@ -29,6 +32,10 @@ use {
     config = function() require("logo").setup() end
 }
 ```
+
+### installing image.nvim
+Please see [image.nvim](https://github.com/3rd/image.nvim/tree/master) to see how to install it. You need to install use GUI compatible terminal and install magick outside of vim.
+
 
 ## Configuration
 There are no configuration available.
