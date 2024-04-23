@@ -3,10 +3,10 @@ local PLUGIN_NAME = "logo.nvim"
 local autocmd_group = vim.api.nvim_create_augroup(PLUGIN_NAME, {})
 local highlight_ns_id = vim.api.nvim_create_namespace(PLUGIN_NAME)
 local logo_buff = -1
+local cache_dir = vim.fn.stdpath("cache")
+local img_api = require("image")
 
-local vimimage = require("image").from_url("https://github.com/yifever/logo.nvim/tree/master/data/VIMTRANS.png", {
-	id = "vimstart",
-})
+-- local vimimage = require("image").from_file( "")
 
 local function get_geometry(image)
 	local term_size   = require("image/utils").term.get_size()
@@ -58,14 +58,18 @@ local function set_options()
 	vim.opt_local.colorcolumn = "0"        -- disable colorcolumn
 end
 
-
-local function display_logo(image)
+local function display_logo()
 	local default_buff = vim.api.nvim_get_current_buf()
 
 	logo_buff = create_and_set_minintro_buf(default_buff)
 	set_options()
-
-	draw_logo(logo_buff, image)
+	img_api.from_url(
+		"https://raw.githubusercontent.com/yifever/logo.nvim/master/data/VIMTRANS.png",
+		{
+			id = "vimstart",
+		}, function(vimimage)
+			draw_logo(logo_buff, vimimage)
+		end)
 
 	-- TODO support resize
 	-- vim.api.nvim_create_autocmd({ "WinResized", "VimResized" }, {
@@ -74,16 +78,16 @@ local function display_logo(image)
 end
 local function setup(options)
 	options = options or {}
-	vim.api.nvim_set_hl(highlight_ns_id, "Default", { fg = options.color or DEFAULT_COLOR })
+	vim.api.nvim_set_hl(highlight_ns_id, "Default", { fg = options.color })
 	vim.api.nvim_set_hl_ns(highlight_ns_id)
 
 	vim.api.nvim_create_autocmd("VimEnter", {
 		group = autocmd_group,
 		require("notify")(vim.fn.stdpath("cache")),
 		callback = function()
+			-- Execute a command if there are no open files
 			if vim.api.nvim_buf_get_name(0) == "" then
-				-- Execute a command if there are no open files
-				display_logo(vimimage)
+				display_logo()
 			end
 		end,
 		once = true
@@ -91,13 +95,13 @@ local function setup(options)
 
 	vim.api.nvim_create_autocmd("BufRead", {
 		callback = function()
-			vimimage:clear()
+			img_api.clear("vimstart")
 		end,
 	})
 
 	vim.api.nvim_create_autocmd("BufNewFile", {
 		callback = function()
-			vimimage:clear()
+			img_api.clear("vimstart")
 		end,
 	})
 
