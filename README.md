@@ -1,4 +1,4 @@
-# minintro.nvim
+# logo.nvim
 Extremely minimalistic intro screen for Neovim
 
 ## Motivation
@@ -6,17 +6,17 @@ Neovim intro screen can be extremely buggy and forced to close automatically by 
 [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua), 
 [bufferline](https://github.com/akinsho/bufferline.nvim), 
 [lualine](https://github.com/nvim-lualine/lualine.nvim) and many more.  
-`minintro.nvim` hijects `no-name` and `directory` buffer and draws a simple intro logo.
+`logo.nvim` hijects `no-name` and `directory` buffer and draws a simple intro logo.
 If you just want a simple and lightweight startup intro that works, this plugin is for you.
 
 ## Screenshot
-![minintro-screenshot](screenshots/screenshot.png)
+![logo-screenshot](screenshots/screenshot.png)
 
 ## Installation
 ```lua
 -- Lazy
 {
-    "eoh-bse/minintro.nvim",
+    "yifever/logo.nvim",
     config = true,
     lazy = false
 }
@@ -26,29 +26,13 @@ If you just want a simple and lightweight startup intro that works, this plugin 
 -- Packer
 use {
     "eoh-bse/minintro.nvim",
-    config = function() require("minintro").setup() end
+    config = function() require("logo").setup() end
 }
 ```
 
 ## Configuration
-There is only one option available for `minintro.nvim` and that is color of the intro logo. There is no need
-to create a separate config file. Pass the config directly in your plugin installation file
-```lua
--- Lazy
-{
-    "eoh-bse/minintro.nvim",
-    opts = { color = "#98c379" }
-    config = true,
-    lazy = false
-}
-```
+There are no configuration available.
 
-```lua
--- Packer
-use {
-    "eoh-bse/minintro.nvim",
-    config = function() require("minintro").setup({ color = "#98c379" }) end
-}
 ```
 
 ## Things to be aware of
